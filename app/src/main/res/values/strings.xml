@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">SunShine</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_share">Share</string>
+    <string name="map_location">Map Location</string>
+    <string name="list_item_forecast_item_textvew">Today - Sunny 88 / 63</string>
+    <string name="title_activity_detail">DetailActivity</string>
+
+    <!-- Menu Preferences variables -->
+    <!--Location parameters-->
+    <string name="pref_location_label">Location</string>
+    <string name="pref_location_key" translatable="false">location</string>
+    <string name="pref_location_default" translatable="false">94043</string>
+    <!--Metrics parameters-->
+    <string name="pref_units_label">Units</string>
+    <string name="pref_units_key" translatable="false">units</string>
+    <string name="pref_units_default" translatable="false">metric</string>
+    <string name="pref_units_imperial" translatable="false">imperial</string>
+    <string name="pref_units_metric" translatable="false">metric</string>
+
+    <!-- # copy shared-->
+    <string name="shared_copy" translatable="false">#SunshineApp</string>
+
+</resources>
