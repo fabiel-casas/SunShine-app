@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.test.AndroidTestCase;
 
-
 import com.learn.johanfabiel.sunshine.utils.PollingCheck;
 
 import java.util.Map;
@@ -119,7 +118,6 @@ public class TestUtilities extends AndroidTestCase {
       super(new Handler(ht.getLooper()));
       mHT = ht;
     }
-
     // On earlier versions of Android, this onChange method is called
     @Override
     public void onChange(boolean selfChange) {
