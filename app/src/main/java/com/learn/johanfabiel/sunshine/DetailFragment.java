@@ -1,13 +1,12 @@
 package com.learn.johanfabiel.sunshine;
 
-import android.app.LoaderManager;
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.content.Loader;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
@@ -21,9 +20,7 @@ import android.widget.TextView;
 
 import com.learn.johanfabiel.sunshine.data.WeatherContract;
 
-public class DetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
-
-  public static final String KEY_NAME_WEATHER = "weather";
+public class DetailFragment extends Fragment implements LoaderCallbacks<Cursor> {
 
   private TextView nameDetail;
   private String LOG_TAG = DetailFragment.class.getSimpleName();
@@ -39,6 +36,12 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
       WeatherContract.WeatherEntry.COLUMN_MAX_TEMP,
       WeatherContract.WeatherEntry.COLUMN_MIN_TEMP
   };
+
+  private static final int COL_WEATHER_ID = 0;
+  private static final int COL_WEATHER_DATE = 1;
+  private static final int COL_WEATHER_DESC = 2;
+  private static final int COL_WEATHER_MAX_TEMP = 3;
+  private static final int COL_WEATHER_MIN_TEMP = 4;
 
   public DetailFragment() {
     // Required empty public constructor
@@ -60,14 +63,6 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     return detailFragment;
   }
 
-  private Intent createShareForecastIntent() {
-    Intent shareIntent = new Intent();
-    shareIntent.setAction(Intent.ACTION_SEND);
-    shareIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-    shareIntent.setType("text/plain");
-    shareIntent.putExtra(Intent.EXTRA_TEXT, mForecastStr +" "+ getString(R.string.shared_copy));
-    return  shareIntent;
-  }
 
 
   @Override
@@ -87,6 +82,20 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     } else {
       Log.d(LOG_TAG, "Share Action Provider is null?");
     }
+  }
+
+  private Intent createShareForecastIntent() {
+    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+    shareIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+    shareIntent.setType("text/plain");
+    shareIntent.putExtra(Intent.EXTRA_TEXT, mForecastStr +" "+ getString(R.string.shared_copy));
+    return  shareIntent;
+  }
+
+  @Override
+  public void onActivityCreated(Bundle savedInstanceState) {
+    getLoaderManager().initLoader(DETAIL_LOADER, null, this);
+    super.onActivityCreated(savedInstanceState);
   }
 
   @Override
@@ -113,14 +122,14 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     if(!data.moveToFirst()){
       return;
     }
-    String dateString = Utility.formatDate(data.getLong(ForecastFragment.COL_WEATHER_DATE));
-    String weatherDescription = data.getString(ForecastFragment.COL_WEATHER_DESC);
+    String dateString = Utility.formatDate(data.getLong(COL_WEATHER_DATE));
+    String weatherDescription = data.getString(COL_WEATHER_DESC);
     boolean isMetric = Utility.isMetric(getActivity());
     String high = Utility.formatTemperature(
-        data.getDouble(ForecastFragment.COL_WEATHER_MAX_TEMP), isMetric
+        data.getDouble(COL_WEATHER_MAX_TEMP), isMetric
     );
     String low = Utility.formatTemperature(
-        data.getDouble(ForecastFragment.COL_WEATHER_MIN_TEMP), isMetric
+        data.getDouble(COL_WEATHER_MIN_TEMP), isMetric
     );
     mForecastStr = String.format("%s - %s - %s/%s", dateString, weatherDescription, high, low);
 
