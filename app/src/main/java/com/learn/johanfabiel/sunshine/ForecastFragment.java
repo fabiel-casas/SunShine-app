@@ -114,6 +114,12 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
     getLoaderManager().initLoader(FORECAST_LOADER, null, this);
   }
 
+  // since we read the location when we create the loader, all we need to do is restart things
+  void onLocationChanged( ) {
+    updateWeather();
+    getLoaderManager().restartLoader(FORECAST_LOADER, null, this);
+  }
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -124,12 +130,6 @@ public class ForecastFragment extends Fragment implements LoaderManager.LoaderCa
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     super.onCreateOptionsMenu(menu, inflater);
     inflater.inflate(R.menu.forecastfragment, menu);
-  }
-
-  @Override
-  public void onStart() {
-    super.onStart();
-    updateWeather();
   }
 
   @Override

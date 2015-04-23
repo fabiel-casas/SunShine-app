@@ -61,6 +61,6 @@ public class ForecastAdapter extends CursorAdapter {
     // we'll keep the UI functional with a simple (and slow!) binding.
 
     TextView tv = (TextView)view;
-    tv.setText(convertCursorRowToUXFormat(cursor));
+    //tv.setText(convertCursorRowToUXFormat(cursor));
   }
 }
