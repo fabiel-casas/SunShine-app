@@ -153,6 +153,9 @@ public class DetailFragment extends Fragment implements LoaderCallbacks<Cursor> 
       return;
     }
 
+    int iconResource = data.getInt(data.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_WEATHER_ID));
+    mIconView.setImageResource(Utility.getArtResourceForWeatherCondition(iconResource));
+
     String dayString = Utility.getFriendlyDayString(getActivity(), data.getLong(COL_WEATHER_DATE));
     mFriendlyDateView.setText(dayString);
 
