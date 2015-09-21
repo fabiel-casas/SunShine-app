@@ -9,11 +9,14 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.learn.johanfabiel.sunshine.app.ForecastFragment;
+
 /**
  * Created by rokk3r26 on 4/14/15.
  */
 public class ForecastAdapter extends CursorAdapter {
   private Context mContext;
+  private boolean mUseTodayLayout = false;
 
   public ForecastAdapter(Context context, Cursor c, int flags) {
     super(context, c, flags);
@@ -120,9 +123,13 @@ public class ForecastAdapter extends CursorAdapter {
     viewHolder.lowTempView.setText(Utility.formatTemperature(context, low, isMetric));
   }
 
+  public void setUseTodayLayout(boolean useTodayLayout) {
+    this.mUseTodayLayout = useTodayLayout;
+  }
+
   @Override
   public int getItemViewType(int position) {
-    return position == 0 ? VIEW_TYPE_TODAY : VIEW_TYPE_FUTURE_DAY;
+    return (position == 0 && mUseTodayLayout) ? VIEW_TYPE_TODAY : VIEW_TYPE_FUTURE_DAY;
   }
 
   @Override

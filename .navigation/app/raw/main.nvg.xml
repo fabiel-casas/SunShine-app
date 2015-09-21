@@ -22,7 +22,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.MenuState"      
-        className = "com.learn.johanfabiel.sunshine.MainActivity"/>
+        className = "com.learn.johanfabiel.sunshine.app.MainActivity"/>
       <point      
         x = "1768"      
         y = "100"/>
@@ -30,7 +30,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "com.learn.johanfabiel.sunshine.MainActivity"/>
+        className = "com.learn.johanfabiel.sunshine.app.MainActivity"/>
       <point      
         x = "500"      
         y = "100"/>
