@@ -27,4 +27,41 @@
         for two-pane layout -->
     </style>
 
+    <style name="TextStyleCondensedSmall" >
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textAppearance">?android:textAppearanceSmall</item>
+    </style>
+
+    <style name="TextStyleCondensedLarge" >
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textAppearance">?android:textAppearanceLarge</item>
+    </style>
+
+    <style name="TodayTextStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="TodayTextDate" parent="TodayTextStyle">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textAppearance">?android:textAppearanceLarge</item>
+    </style>
+
+    <style name="TodayTextTemperatureMax" parent="TodayTextStyle">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/font_size_titan</item>
+    </style>
+
+    <style name="TodayTextTemperatureMin" parent="TodayTextStyle">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/font_size_giant</item>
+    </style>
+
+    <style name="BaseSansSerifCondensed">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+    <style name="BaseSansSerifLight">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
 </resources>
